@@ -1,0 +1,83 @@
+<!-- no need fo including Doctype and Html tags Meteor takes care of it -->
+<head>
+<title>PTP</title>
+</head>
+
+<body>
+      {{> registerForm}}<!-- displaying templates -->
+      {{> show}}
+      {{>about}}
+</body>
+<template name="registerForm"><!-- defining templates -->
+	<div class="logo">
+	   <img src="ptp_logo.png" alt="pic" height="60" width="350">
+       <h1 id="logo">Pass The Popcorn</h1>	
+	</div><br>
+	<div id="main">		
+       <h3>Want to Host your own Movie Night Event?</h3>
+       <h4>Register with us </h4> 
+       <p id='log'>{{> loginButtons}}</p>
+    </div><br>
+    {{#if currentUser}}<!-- to display registeration form only if the user is logged in -->
+    <div class="main">
+     <form>
+      <table>
+	    <tr><td>Host Name:</td><td>
+	    	<input type="text" name="Hname"></td></tr>
+	    <tr><td>Email:</td><td> 
+		     <input type="email" name="Hemail"></td></tr>
+	    <tr><td>Phone Number:</td><td>
+	    	 <input type="tel" name="tel"></td></tr>	
+	    <tr><td>Location:</td><td >
+	    	 <input id="xyz" type="text" name="add"></td></tr>
+	    <tr><td>Date:</td><td>
+		     <input type="date" name="Edate"></td></tr>		
+	    <tr><td>Movie title:</td><td>
+		     <input type="text" name="Mtitle"></td></tr>
+	    <tr><td id="reg"></td></tr>
+	    <tr><td>Movie title:</td><td>
+	    	 <input type="submit" value="Register"></td></tr>
+       </table>
+       </form>
+
+     </div><br>
+     {{/if}}
+</template>
+<template name="show">
+	{{#if currentUser}}<!-- to display registered document only if the user is logged in -->
+     {{#each hosts}}<!-- to iterate for each document as long as there is one -->
+    <div class="main">
+     <table>
+	   <tr><td>Host Name :</td><td>{{HostName}}</td></tr>
+	   <tr><td>Email :</td><td>{{hostEmail}}</td></tr>
+	   <tr><td>Phone :</td><td>{{hostTelnum}}</td></tr>
+	   <tr><td>Event Address :</td><td>{{eventAddress}}</td></tr>
+	   <tr><td>Event Date :</td><td>{{eventDate}}</td></tr>
+	   <tr><td>Movie Title :</td><td>{{movieTitle}}</td></tr>
+	   <tr><td>Registered By:</td><td>{{registeredByName}}</td></tr>
+
+	<tr><td>Status :</td><td>{{status}}</td></tr>
+	<tr><td></td><td><input type="button"  class="confirm" value="Confirm"></td>
+	<td></td><td><input type="button" class="remove" value="Cancel"></td></tr>
+
+	 </table> 
+    </div><br>
+    {{/each}}{{/if}}
+</template>
+
+<template name="about">
+	{{#if currentUser}}		
+	<!-- display nothing -->
+    {{else}}<!-- to display this section if the user is not logged in -->
+    <div id="about">
+      <h1 id='h1'>About us</h1>
+     <table><tr><td><p>      
+        An online event management tool for film enthusiasts. 
+        PassThePopcorn is used by unique venues to organise and promote niche movie nights, 
+        events that expand the experience of watching a film or documentary. 
+  		What was the best movie you watched when you was young? 
+  		What memories do you have of where and who you watched it</p></td><td>
+        <img src="pic1.jpg" alt="pic" height="242" width="542">
+      </td></tr></table>
+    </div>{{/if}}
+</template>
